@@ -33,6 +33,10 @@ Vue.use(VueRouter)
   	path:'/axiosErr',
   	name:'axiosErr',
   	component:() => import('../views/axiosErr.vue')
+},{
+  	path:'/buddyList',
+  	name:'buddyList',
+  	component:() => import('../views/buddyList.vue')
   }
 ]
 
