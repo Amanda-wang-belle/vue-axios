@@ -49,13 +49,15 @@ export default {
 		this.getList()
 	},
 	methods:{
-		getList(){
-			this.instance.get('/contactList').then(res=>{
-				this.list = res.data.data
-			}).catch(err=>{
-				Toast('请求失败，请稍后重试');
-				console.log(err)
-			})
+		async getList(){
+			let res = await this.$Http.getBuddyList()
+			console.log(res)
+			// this.instance.get('/contactList').then(res=>{
+			// 	this.list = res.data.data
+			// }).catch(err=>{
+			// 	Toast('请求失败，请稍后重试');
+			// 	console.log(err)
+			// })
 		},
 		onAdd(){
 			this.showEdit = true

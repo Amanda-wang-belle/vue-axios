@@ -58,6 +58,7 @@ instance.interceptors.request.use(config=>{
 	  forbidClick: true,
 	  loadingType: 'spinner',
 	});
+	return config
 },err=>{
 	Toast.clear();
 	Toast('请求错误，请求稍后重试')
