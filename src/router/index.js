@@ -21,6 +21,15 @@ Vue.use(VueRouter)
 	path:'/axiosBasic',
 	name:'axiosBasic',
 	component:() => import('../views/axiosBasic.vue')
+  },{
+	path:'/vueInstance',
+	name:'vueInstance',
+	component:() => import('../views/vueInstance.vue')
+  },
+  ,{
+  	path:'/axiosInterceptor',
+  	name:'axiosInterceptor',
+  	component:() => import('../views/axiosInterceptor.vue')
   }
 ]
 
