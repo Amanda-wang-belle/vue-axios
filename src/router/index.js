@@ -25,11 +25,14 @@ Vue.use(VueRouter)
 	path:'/vueInstance',
 	name:'vueInstance',
 	component:() => import('../views/vueInstance.vue')
-  },
-  ,{
+  },{
   	path:'/axiosInterceptor',
   	name:'axiosInterceptor',
   	component:() => import('../views/axiosInterceptor.vue')
+},{
+  	path:'/axiosErr',
+  	name:'axiosErr',
+  	component:() => import('../views/axiosErr.vue')
   }
 ]
 
