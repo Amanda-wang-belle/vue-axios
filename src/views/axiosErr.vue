@@ -29,6 +29,19 @@ export default{
 			console.log(err)
 		})
 		
+		// 取消请求
+		let source = axios.CancleToken.source()
+		axios.get('/data.json',{
+			CancleToken:source.token
+		}).then(res=>{
+			console.log(res)
+		}).catch(err=>{
+			console.log(err)
+		})
+		
+		// 取消请求（message可选）
+		source.cancle('cancle http')
+		
 	}
 }
 </script>
