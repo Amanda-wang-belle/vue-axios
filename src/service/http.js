@@ -33,7 +33,8 @@ for(let key in service){
 		
 		// 不同请求的判断
 		let response = {} //请求的返回值
-		if (api.mehtods === 'put'||api.methods ==='patch'||api.methods ==="post") {
+		// 谨记是api.method而不是methods，我这个地方写错了，找了好长时间问题，s太难注意到了
+		if (api.method === 'put'||api.method ==='patch'||api.method ==="post") {
 			try{
 				response = await instance[api.method](api.url,newParams,config)
 			}catch(e){

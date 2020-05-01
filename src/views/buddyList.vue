@@ -51,13 +51,7 @@ export default {
 	methods:{
 		async getList(){
 			let res = await this.$Http.getBuddyList()
-			console.log(res)
-			// this.instance.get('/contactList').then(res=>{
-			// 	this.list = res.data.data
-			// }).catch(err=>{
-			// 	Toast('请求失败，请稍后重试');
-			// 	console.log(err)
-			// })
+			this.list = res.data;
 		},
 		onAdd(){
 			this.showEdit = true
@@ -68,45 +62,42 @@ export default {
 			this.isEdit = true
 			this.editingContact = info
 		},
-		onSave(info){
+		async onSave(info){
 			if(this.isEdit){
+				console.log(info)
 				//编辑保存
-				this.instance.put('/contact/edit',info).then(res=>{
-					if(res.data.code === 200){
-						Toast('保存成功');
-						this.showEdit = false
-						this.getList()
-					}
-				}).catch(()=>{
-					Toast('请求失败，请稍后重试');
-				})
-			}else{
-				//新建保存
-				this.instance.post('/contact/new/json',info).then(res=>{
-					if(res.data.code === 200){
-						Toast('新建成功');
-						this.showEdit = false
-						this.getList()
-					}
-				}).catch(()=>{
-					Toast('请求失败，请稍后重试');
-				})
-			}
-		},
-		onDelete(info){
-			this.instance.delete('/contact',{
-				params:{
-					id:info.id
-				}
-			}).then(res=>{
-				if(res.data.code === 200){
-					Toast('删除成功');
+				let res = await this.$Http.editBuddy(info)
+				
+				if(res.code === 200){
+					Toast('保存成功');
 					this.showEdit = false
 					this.getList()
 				}
-			}).catch(()=>{
-				Toast('请求失败，请稍后重试');
-			})
+			}else{
+				//新建保存
+				// let res = await this.$Http.newBuddyJson(info)
+				let res = await this.$Http.newBuddyForm(info,true)
+				if(res.code === 200){
+					Toast('新建成功');
+					this.showEdit = false
+					this.getList()
+				}
+				// this.instance.post('/contact/new/json',info).then(res=>{
+				// 	console.log(res)
+				// })
+			}
+		},
+		async onDelete(info){
+			let res = await this.$Http.delBuddy(
+				{
+					id:info.id
+				})
+			if(res.code === 200){
+				Toast('删除成功');
+				this.showEdit = false
+				this.getList()
+			}
+			
 		},
 		// 选中联系人
 		onSelect() {
